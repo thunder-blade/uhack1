@@ -5,19 +5,102 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 public class App {
     public static void main(String[] args) {
-        Graph graph = OrientGraph.open("remote:localhost/TestDB", "root", "rootpwd");
+        Graph graph = OrientGraph.open("remote:localhost/test2", "root", "rootpwd");
         graph.tx().open();
-        Vertex marko = graph.addVertex(T.label, "person", "name", "marko", "age", 29);
-        Vertex vadas = graph.addVertex(T.label, "person", "name", "vadas", "age", 27);
-        Vertex lop = graph.addVertex(T.label, "software", "name", "lop", "lang", "java");
-        Vertex josh = graph.addVertex(T.label, "person",  "name", "josh", "age", 32);
-        Vertex ripple = graph.addVertex(T.label, "software",  "name", "ripple", "lang", "java");
-        Vertex peter = graph.addVertex(T.label, "person",   "name", "peter", "age", 35);
-        marko.addEdge("knows", vadas,   "weight", 0.5f);
-        marko.addEdge("knows", josh,   "weight", 1.0f);
-        marko.addEdge("created", lop,   "weight", 0.4f);
-        josh.addEdge("created", ripple,   "weight", 1.0f);
-        josh.addEdge("created", lop,   "weight", 0.4f);
-        peter.addEdge("created", lop,   "weight", 0.2f);
+        Vertex ec2 = graph.addVertex(T.label, "EC2",
+                                    "PrivateIp" , "172.31.45.147",
+                                    "LaunchDate" , "2018-07-21T15:49:26+00,00",
+                                    "DayOfMonth" , "2019-05-01",
+                                    "Subnet" , "subnet-5b2e2512",
+                                    "id" , "2959-i-07ec8ec4a1b5de496-2019-05-01",
+                                    "IsNew" , true,
+                                    "IsDeleted" , false,
+                                    "DestinationIPs" , "[ '0.0.0.0/0' ]",
+                                    "CustomerHash" , "d067813e5b007a8c6ea60a7e985c3fce",
+                                    "PayerMssId" , "",
+                                    "Fixed" , false,
+                                    "IsEmrInstance" , false,
+                                    "AccName" , "Beam engg",
+                                    "VolumesAttached" , "[ 'vol-0fcb7594caa9b71c5' ]",
+                                    "PayerAccountId" , "",
+                                    "Az" , "ap-northeast-1a",
+                                    "EC2ClassicInstance" , false,
+                                    "InstanceStateCode" , 80,
+                                    "Tenancy" , "default",
+                                    "IsUnused" , false,
+                                    "IsPIOPSVolumeAttached" , false,
+                                    "Name" , "WordPress",
+                                    "Type" , "t2.micro",
+                                    "PrivateSubnet" , false,
+                                    "InitiatedTime" , 1.5567389976276406E12,
+                                    "ResourceId" , "i-07ec8ec4a1b5de496",
+                                    "IgnoredSubAudit" , "[ ]",
+                                    "Region" , "ap-northeast-1",
+                                    "Category" , "[ 'Infrastructure Security' ]",
+                                    "Meta" , "{ }",
+                                    "RegionName" , "AsiaPacific(Tokyo)",
+                                    "State" , "stopped",
+                                    "LinkedMssId" , 2959,
+                                    "VpcId" , "vpc-0b692b6c",
+                                    "InstanceState" , "stopped",
+                                    "IsTermProtectionEnabled" , false,
+                                    "InternetGateways" , "[ 'igw-66e7b102' ]",
+                                    "Timestamp" , 1556739148,
+                                    "RouteTables" , "[ 'rtb-1f6ab379' ]",
+                                    "productCategoryName" , "Compute",
+                                    "FixedSubAudit" , "[ ]",
+                                    "InstanceProfileRole" , "",
+                                    "PIOPVolumeList" , "[ ]",
+                                    "RootDeviceType" , "ebs",
+                                    "Platform" , "Unknown",
+                                    "PublicIp" , "",
+                                    "ServiceName" , "EC2 Instances",
+                                    "InstanceType" , "t2.micro",
+                                    "AwsAccountId" , "347678256465",
+                                    "InstanceProfileAttached" , false,
+                                    "EbsOptimised" , false,
+                                    "IsAutoScalingInstance" , false
+        );
+        Vertex ebs = graph.addVertex(T.label, "EBS",
+                                    "InitiatedTime" , 1.5567389976276406E12,
+                                    "DayOfMonth" , "2019-05-01",
+                                    "IsEncrypted" , false,
+                                    "ResourceId" , "vol-03d1f57f6922d0314",
+                                    "IgnoredSubAudit" , "[ ]",
+                                    "Size" , 8,
+                                    "Region" , "us-east-1",
+                                    "IsNew" , true,
+                                    "IsDeleted" , false,
+                                    "Category" , "[ 'Infrastructure Security' ]",
+                                    "Meta" , "{ }",
+                                    "CreateTime" , "2019-03-12T10:24:58.779000+00:00",
+                                    "IsAutoscalingInstanceAttached" , false,
+                                    "State" , "in-use",
+                                    "Tags" , "[ ]",
+                                    "Fixed" , false,
+                                    "LinkedMssId" , 2959,
+                                    "AccName" , "Beam engg",
+                                    "PayerAccountId" , "",
+                                    "VolumeType" , "gp2",
+                                    "Name" , "",
+                                    "Timestamp" , 1556739148,
+                                    "Az" , "us-east-1b",
+                                    "AttachedToInstance" , true,
+                                    "FixedSubAudit" , "[ ]",
+                                    "CustomerHash" , "d067813e5b007a8c6ea60a7e985c3fce",
+                                    "PayerMssId" , "",
+                                    "AwsAccountId" , "347678256465",
+                                    "IsEMRInstanceAttached" , false,
+                                    "IsUnused" , false,
+                                    "RegionName" , "USEast(N.Virginia)",
+                                    "LatestSnapshotDate" , "1970-01-01",
+                                    "ServiceName" , "EBS Volumes",
+                                    "NumberOfSnapshots" , 0,
+                                    "productCategoryName" , "Compute",
+                                    "Type" , "gp2",
+                                    "id" , "2959-vol-03d1f57f6922d0314-2019-05-01"
+     );
+     ebs.addEdge("EBS_EC2", ec2);
+     ec2.addEdge("EC2_EBS", ebs);
     }
 }
